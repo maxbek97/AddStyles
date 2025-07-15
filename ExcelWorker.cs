@@ -127,8 +127,7 @@ namespace AddStyles
 
         public void ApplyConditionalFormatting(ExcelWorksheet worksheet)
         {
-            
-            var range = worksheet.Cells[$"A:{ExcelCellAddress.GetColumnLetter(GetColumnNumber(ColumnLetterToAdd) + 1)}"];
+            var range = worksheet.Cells[$"A1:{ExcelCellAddress.GetColumnLetter(GetColumnNumber(ColumnLetterToAdd) + 1)}{worksheet.Dimension.Rows}"];
 
             var ruleOk = range.ConditionalFormatting.AddEqual();
             ruleOk.Formula = "\"Всё ок\"";

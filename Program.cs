@@ -1,14 +1,4 @@
-﻿using OfficeOpenXml;
-using System.ComponentModel;
-using System.IO;
-
-//using (var package = new ExcelPackage(new FileInfo("путь_к_файлу.xlsx")))
-//{
-//    var worksheet = package.Workbook.Worksheets[0]; // получаем первый лист
-
-//    // теперь можешь читать/писать в worksheet
-//    var value = worksheet.Cells["A1"].Text;
-//}
+﻿
 
 namespace AddStyles
 {

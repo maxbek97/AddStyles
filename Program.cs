@@ -12,6 +12,9 @@ using System.IO;
 
 namespace AddStyles
 {
+    /// <summary>
+    /// Класс отвечающий за работу с файловой системой (Поиск нужных файлов для работы)
+    /// </summary>
     public class FileFinder
     {
         private string src_folder { get; init; }
@@ -19,12 +22,17 @@ namespace AddStyles
         private string current_directory { get; init; }
         public FileFinder()
         {
+            //Можно улучшить добавив проверку Атаян
             current_directory = AppContext.BaseDirectory;
             Console.WriteLine("Введите номер папки-источника. ");
             src_folder = Path.Combine(current_directory, GetFolder_target());
             Console.WriteLine("Введите номер папки-назначения. ");
             dst_folder = Path.Combine(current_directory, GetFolder_target());
         }
+        /// <summary>
+        /// Проводит поиск директорий, соседствующих с исполняемым файлом
+        /// </summary>
+        /// <returns>Список названий соседствующих папок</returns>
         private List<string> Enumerate_folders()
         {
             List<string> inner_directories = Directory.GetDirectories(current_directory).ToList();
@@ -35,10 +43,12 @@ namespace AddStyles
             }
             return inner_directories;
         }
-
+        /// <summary>
+        /// ПОльзователь задает номер предложенной папки 
+        /// </summary>
+        /// <returns>соотеветствующую номеру название папки.</returns>
         private string GetFolder_target()
         {
-            /// Получает от пользователя номер показываемой папки, а возвращает соотеветствующее этому номеру название папки.
             var inner_directories = this.Enumerate_folders();
             int number_folder = -1;
 
@@ -58,6 +68,10 @@ namespace AddStyles
             return inner_directories[number_folder - 1];
         }
 
+        /// <summary>
+        /// Анализирует выбранную директорию-источник на файлы эксель
+        /// </summary>
+        /// <returns>Возвращает массив полных путей до файлов эксель</returns>
         public string[] GetFileNames()
         {
             var list_files = Directory.GetFiles(src_folder)
